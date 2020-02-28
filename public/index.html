@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+
+    <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <!-- Main Font -->
+	<script src="js/libs/webfontloader.min.js"></script>
+
+	<script>
+		WebFont.load({
+			google: {
+				families: ['Roboto:300,400,500,700:latin']
+			}
+		});
+	</script>
+
+	<!-- Main Styles CSS -->
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+	<!-- <link rel="stylesheet" type="text/css" href="./css/bootstrap.css"> -->
+
+    <!-- Chat -->
+    <link rel="stylesheet" href="./dist/css/grayshift.min.css">
+    <link rel="stylesheet" href="./dist/css/swipe.min.css">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" integrity="sha384-AKT9MKPmIq4VMihDqOB6HeDHSsXGyf92WHPCSwHAZPIVJpD8Jv6dmfTLZeLDvV4O" crossorigin="anonymous">
+</head>
+
+<body class="landing-page">
+
+<noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+</noscript>
+
+<div id="app"></div>
+<!-- built files will be auto injected -->
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/eva-icons@1.1.2/eva.min.js" integrity="sha384-evc6xuruZOLSxcDYJOMhN4pnuWv2x1hHaVU9m0os+cvprT9Gg1sgClT+EM4n/ng9" crossorigin="anonymous"></script>
+<script src="dist/js/offcanvas.min.js"></script>
+
+</body>
+</html>
