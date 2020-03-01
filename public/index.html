@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
 
     <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
 
     <!-- Main Font -->
 	<script src="js/libs/webfontloader.min.js"></script>
@@ -26,7 +27,7 @@
     <!-- Chat -->
     <link rel="stylesheet" href="./dist/css/grayshift.min.css">
     <link rel="stylesheet" href="./dist/css/swipe.min.css">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" integrity="sha384-AKT9MKPmIq4VMihDqOB6HeDHSsXGyf92WHPCSwHAZPIVJpD8Jv6dmfTLZeLDvV4O" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://rsms.me/inter/inter.css" integrity="sha384-AKT9MKPmIq4VMihDqOB6HeDHSsXGyf92WHPCSwHAZPIVJpD8Jv6dmfTLZeLDvV4O" crossorigin="anonymous"> -->
 </head>
 
 <body class="landing-page">
@@ -37,6 +38,9 @@
 
 <div id="app"></div>
 <!-- built files will be auto injected -->
+
+<!-- BITBOX for Bitcoin Cash (https://developer.bitcoin.com/bitbox) -->
+<script src="./js/bitbox.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>

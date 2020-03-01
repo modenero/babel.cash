@@ -778,16 +778,16 @@
                     </div>
                   </div>
                   <div class="chat-footer">
-                    <form>
+                    <!-- <form> -->
                       <div class="input-group">
                         <input class="form-control form-control-lg" placeholder="Type message..." autofocus>
                         <div class="input-group-append">
-                          <button class="btn" type="submit">
+                          <button class="btn" @click="send">
                             <i data-eva="paper-plane" data-eva-animation="pulse"></i>
                           </button>
                         </div>
                       </div>
-                    </form>
+                    <!-- </form> -->
                   </div>
                 </div>
                 <button class="btn btn-circle btn-neutral sidebar-toggler" data-toggle="sidebar-offcanvas">
@@ -1187,9 +1187,99 @@
 </template>
 
 <script>
+/* Initialize vuex. */
+// import { mapActions, mapState } from 'vuex'
+
+/* Import modules. */
+// import makeBlockie from 'ethereum-blockies-base64'
+import * as matrix from 'matrix-js-sdk'
+// import moment from 'moment'
+import superagent from 'superagent'
+
+/* Import modules. */
+import createSession from '@/libs/createSession'
+// import sendDonation from '@/libs/sendDonation'
+
+
 export default {
     props: {
         // msg: String
+    },
+    methods: {
+        send() {
+            console.log('SENDING...')
+        },
+
+        /**
+         * Sign In
+         */
+        async signIn() {
+            /* Create a new session. */
+            const result = await createSession()
+                .catch(err => {
+                    if (err === 'DENIED') {
+                        alert('whachudoin bro? gotta approve dat')
+                    } else {
+                        console.error('CREATE SESSION ERROR:', err)
+                    }
+                })
+            console.log('CREATE SESSION RESULT', result)
+
+            /* Validate result. */
+            if (result && result.authHash) {
+                /* Set authorizaton hash. */
+                const authHash = result.authHash
+                console.log('AUTH HASH', authHash)
+
+                superagent
+                    .post(this.apiUrl + '/sessions')
+                    .send({ authHash })
+                    .set('accept', 'json')
+                    .end((err, res) => {
+                        if (err) {
+                            return console.error('API ERROR:', err)
+                        }
+
+                        // console.log('SESSION RESULT', res)
+
+                        /* Set session. */
+                        const session = res.body
+
+                        /* Validate session. */
+                        if (session) {
+                            /* Update store. */
+                            this.initSession(session)
+                            console.log('SESSION', session)
+                        }
+
+                        /* Validate cash accounts. */
+                        if (session && session.cashAccounts) {
+                            /* Set cash accounts. */
+                            this.updateCashAccounts(session.cashAccounts)
+                        }
+                    })
+
+            } else {
+                alert('Something went wrong.')
+            }
+        },
+
+        /**
+         * Sign Out
+         */
+        signOut() {
+            /* Delete session. */
+            this.deleteSession()
+        },
+
+    },
+    created: function () {
+        /* Initialize Matrix client. */
+        const client = matrix.createClient('https://babel.cash')
+
+        client.publicRooms(function (err, data) {
+            console.log("Public Rooms: %s", JSON.stringify(data))
+        })
     },
     mounted: function () {
         window.eva.replace()
